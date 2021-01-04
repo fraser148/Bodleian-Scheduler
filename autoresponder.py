@@ -1,24 +1,24 @@
-import sys
+#import sys
 import json
-from urllib.request import Request, urlopen
+from urllib.request import Request#, urlopen
 import urllib
 import imaplib
 import smtplib
-import getpass
+#import getpass
 import email
 import email.header
 import time
 import datetime
 from random import randint
-from email.message import EmailMessage
-from ics import Calendar, Event
+#from email.message import EmailMessage
+#from ics import Calendar, Event
 from os.path import basename
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-from email.utils import COMMASPACE, formatdate
+from email.utils import formatdate#, COMMASPACE
 
 sender_of_interest = 'fjrennie1@outlook.com'
 
@@ -79,7 +79,7 @@ def new_email2(start, end, library, account):
     ical+= "SUMMARY:"+library+CRLF+"TRANSP:OPAQUE"+CRLF+"END:VEVENT"+CRLF+"END:VCALENDAR"+CRLF
 
     eml_body = "Your slot is in: " + library + "\n\n" + start.strftime("%d/%m/%Y @ %H:%M")
-    eml_body_bin = "This is the email body in binary - two steps"
+    #eml_body_bin = "This is the email body in binary - two steps"
     msg = MIMEMultipart('mixed')
     msg['Reply-To']=fro
     msg['Date'] = formatdate(localtime=True)
