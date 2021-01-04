@@ -5,7 +5,6 @@ import urllib
 import imaplib
 import smtplib
 #import getpass
-#
 import email
 import email.header
 import time
