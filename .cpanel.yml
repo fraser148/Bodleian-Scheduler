@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/oxtickets/public_html/
+    - export DEPLOYPATH=/home/oxtickets/bookings/
     - /bin/cp autoresponder.py $DEPLOYPATH
