@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/oxtickets/repositories/Bodleian-Scheduler
+    - export DEPLOYPATH=/home/oxtickets/public_html/
     - /bin/cp autoresponder.py $DEPLOYPATH
