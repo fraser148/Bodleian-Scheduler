@@ -221,7 +221,7 @@ while 1:
         imap.select('Inbox')
         smtp = smtplib.SMTP_SSL('mail.oxtickets.co.uk', 465)
         smtp.ehlo()
-        smtp.login('bodleian.scheduler@oxtickets.co.uk', 'DougFas224!')
+        smtp.login('bodleian.scheduler@oxtickets.co.uk', 'DougFas224')
     except:
         print("something went wrong - Login")
         continue
