@@ -20,32 +20,8 @@ from email.mime.base import MIMEBase
 from email import encoders
 from email.utils import COMMASPACE, formatdate
 
-# FakeBod1287
-
-
-
-# Use search(), not status()
-#status, response = imap.search(None,  'UNSEEN')
-#unread_msg_nums = response[0].split()
-
-# Print the count of all unread messages
-##print(len(unread_msg_nums))
-
 sender_of_interest = 'fjrennie1@outlook.com'
 
-# Print all unread messages from a certain sender of interest
-#status, response = imap.search(None, '(UNSEEN)', '(FROM "%s")' % (sender_of_interest))
-#print(response)
-#unread_msg_nums = response[0].split()
-#da = []
-#for e_id in unread_msg_nums:
-#    _, response = imap.fetch(e_id, '(UID BODY[TEXT])')
-#    da.append(response[0][1])
-#print(da)
-
-# Mark them as seen
-#for e_id in unread_msg_nums:
-#    imap.store(e_id, '+FLAGS', '\Seen')
 
 def new_email():
     global smtp
@@ -216,6 +192,7 @@ counter = 60
 
 while 1:
     try:
+        # Newline
         imap = imaplib.IMAP4_SSL('mail.oxtickets.co.uk', '993')
         imap.login('bodleian.scheduler@oxtickets.co.uk', 'DougFas224!')
         imap.select('Inbox')
@@ -260,9 +237,3 @@ while 1:
     time.sleep(1)
     counter += 1
 
-
-
-#rv, mailboxes = imap.list()
-#if rv == 'OK':
-#    print("Mailboxes:")
-#    print(mailboxes)
