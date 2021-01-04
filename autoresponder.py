@@ -216,7 +216,6 @@ counter = 60
 
 while 1:
     try:
-        # Newline
         imap = imaplib.IMAP4_SSL('mail.oxtickets.co.uk', '993')
         imap.login('bodleian.scheduler@oxtickets.co.uk', 'DougFas224!')
         imap.select('Inbox')
@@ -261,3 +260,9 @@ while 1:
     time.sleep(1)
     counter += 1
 
+
+
+#rv, mailboxes = imap.list()
+#if rv == 'OK':
+#    print("Mailboxes:")
+#    print(mailboxes)
