@@ -202,9 +202,7 @@ while 1:
         print("something went wrong - Login")
         continue
 
-
     # go through all unseen and then check whether in list
-    
 
     if counter == 60:
 
