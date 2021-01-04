@@ -9,5 +9,5 @@ Go to https://www.oxtickets.co.uk/ where you can follow steps 1 and 2 in order t
 Enter your Oxford University College email as seen below
 
 ```bash
-john.smith@college.ox.ac.uk
+john.smith@college.ox.ac.uk2
 ```
