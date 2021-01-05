@@ -4,6 +4,7 @@ from urllib.request import Request#, urlopen
 import urllib
 import imaplib
 import smtplib
+import logging
 #import getpass
 import email
 import email.header
@@ -186,8 +187,11 @@ def process_mailbox(M, account):
                 print("invalid email")
     except:
         print("connection Error")
+        logging.warning('There was a connection error')
 
 counter = 60
+
+logging.basicConfig(filename='errors.log', level=logging.DEBUG, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
 
 while 1:
     try:
@@ -198,37 +202,43 @@ while 1:
         smtp = smtplib.SMTP_SSL('mail.oxtickets.co.uk', 465)
         smtp.ehlo()
         smtp.login('bodleian.scheduler@oxtickets.co.uk', 'DougFas224!')
+        
     except:
         print("something went wrong - Login")
+        logging.warning('Something went wrong in the login')
         continue
 
     # go through all unseen and then check whether in list
 
     if counter == 60:
+        try:
+            print("CHECKING ACCOUTNS")
 
-        print("CHECKING ACCOUTNS")
+            counter = 0
+            #f= open("http://scheduler.oxtickets.co.uk/StudentsData.json")
+            urler = Request("http://oxtickets.co.uk/StudentsData.json", headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(urler) as url:
+                prueba = json.loads(url.read().decode())
 
-        counter = 0
-        #f= open("http://scheduler.oxtickets.co.uk/StudentsData.json")
-        urler = Request("http://oxtickets.co.uk/StudentsData.json", headers={'User-Agent': 'Mozilla/5.0'})
-        with urllib.request.urlopen(urler) as url:
-            prueba = json.loads(url.read().decode())
-
-        #prueba = json.load(f)
-        accounts = [] # your list with json objects (dicts)
-        
+            #prueba = json.load(f)
+            accounts = [] # your list with json objects (dicts)
+            
 
 
-        for item in prueba:
-            accounts.append(item['Email'])
-        
-        print(accounts)
+            for item in prueba:
+                accounts.append(item['Email'])
+            
+            print(accounts)
+        except:
+            print("There was an error reading the accounts to check")
+            logging.warning('There was an error reading the accounts to check')
 
     for account in accounts:
         try:
             process_mailbox(imap, account)
         except:
             print("There was an error")
+            logging.warning('There was an error when trying to read the mailboxes')
     imap.logout()
     smtp.close()
     time.sleep(1)
