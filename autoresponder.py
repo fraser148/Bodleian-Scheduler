@@ -239,8 +239,12 @@ while 1:
         except:
             print("There was an error")
             logging.warning('There was an error when trying to read the mailboxes')
-    imap.logout()
-    smtp.close()
-    time.sleep(1)
-    counter += 1
+    try:
+        imap.logout()
+        smtp.close()
+        time.sleep(1)
+        counter += 1
+    except:
+        print("Failed to log out")
+        logging.warning('Failed to log out')
 
