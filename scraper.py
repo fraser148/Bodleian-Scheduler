@@ -26,3 +26,5 @@ signin.click()
 
 time.sleep(10)
 driver.close()
+
+temp = "ctl00$ContentPlaceHolder$Cart$CheckoutButton"
