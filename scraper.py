@@ -1,4 +1,5 @@
 import time
+import datetime
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
@@ -17,6 +18,10 @@ def highlight(element):
         time.sleep(5)
     apply_style(orignal_style)
 
+NextDay_Date = datetime.datetime.today() + datetime.timedelta(days=2)
+#day = NextDay_Date.strftime("%B %d, %Y").replace(" 0", " ")
+day = NextDay_Date.strftime("%B %d, %Y")
+
 service = Service('chromedriver.exe')
 service.start()
 driver = webdriver.Remote(service.service_url)
@@ -34,7 +39,7 @@ signin = driver.find_element_by_id("idSIButton9")
 signin.click()
 time.sleep(3)
 
-calendar = driver.find_element_by_xpath("//span[@aria-label='January 30, 2021']")
+calendar = driver.find_element_by_xpath("//span[@aria-label='" + day + "']")
 calendar.click()
 time.sleep(2)
 slot = driver.find_element_by_xpath("//div[contains(h5, 'Lower Reading Room Desk Booking') and contains(p, '10:00')]/parent::*/descendant::a")
