@@ -1,0 +1,17 @@
+{
+    "users": {
+        "Fraser Rennie": {
+            "firstName": "Fraser",
+            "lastName": "Rennie",
+            "username":"exet5095@ox.ac.uk",
+            "password":"VernVern01!!",
+            "email": "fraser.rennie@exeter.ox.ac.uk",
+            "bod card":"1266833",
+            "college":"Exeter",
+            "title": "Mr",
+            "preferences": {
+                "morning": 
+            }
+        }
+    }
+}
