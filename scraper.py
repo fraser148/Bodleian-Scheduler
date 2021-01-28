@@ -7,7 +7,7 @@ email_key = "exet5095@ox.ac.uk"
 pwd = "VernVern01!!"
 
 def highlight(element):
-    """Highlights a Selenium webdriver element"""
+    # Highlights a Selenium webdriver element
     driver = element._parent
     def apply_style(s):
         driver.execute_script("arguments[0].setAttribute('style', arguments[1])", element, s)
@@ -21,7 +21,6 @@ service = Service('chromedriver.exe')
 service.start()
 driver = webdriver.Remote(service.service_url)
 driver.get('https://spacefinder.bodleian.ox.ac.uk/')
-elem = driver.find_elements_by_xpath("//*[@type='email']")#put here the content you have put in Notepad, ie the XPath
 time.sleep(1)
 email = driver.find_element_by_id('i0116')
 email.send_keys(email_key)
@@ -38,11 +37,10 @@ time.sleep(3)
 calendar = driver.find_element_by_xpath("//span[@aria-label='January 30, 2021']")
 calendar.click()
 time.sleep(2)
-slot = driver.find_element_by_xpath("//li[contains(text(), 'Lower Reading Room Desk Booking') and [contains(text(), '10:00 - 12:30')]]")
+slot = driver.find_element_by_xpath("//div[contains(h5, 'Lower Reading Room Desk Booking') and contains(p, '10:00')]/parent::*/descendant::a")
 #highlight(slot)
-slot = slot.find_element_by_xpath("")
 slot.click()
-time.sleep(3)
+time.sleep(2)
 confirm = driver.find_element_by_name("ctl00$ContentPlaceHolder$Cart$CheckoutButton")
 confirm.click()
 time.sleep(3)
