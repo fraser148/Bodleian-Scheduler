@@ -1,0 +1,38 @@
+{
+    "users": {
+        "Fraser Rennie": {
+            "firstName": "Fraser",
+            "lastName": "Rennie",
+            "bod card":"1266833",
+            "college":"Exeter",
+            "email": "fraser.rennie@exeter.ox.ac.uk",
+            "title": "Mr",
+            "preferences": {
+                "morning": "Upper Bod",
+                "afternoon": "Upper Bod",
+                "evening": null
+            },
+            "login":{
+                "username":"exet5095@ox.ac.uk",
+                "password":"VernVern01!!"
+            }
+        },
+        "Amynta Rimmer": {
+            "firstName": "Amynta",
+            "lastName": "Rimmer",
+            "bod card":"1159824",
+            "college":"Exeter",
+            "email":"amynta.rimmer@ox.ac.uk",
+            "title": "Miss",
+            "preferences": {
+                "morning":"Duke Humfreys",
+                "afternoon":null,
+                "evening":null
+            },
+            "login":{
+                "username":"exet5029@ox.ac.uk",
+                "password":"Pumpkin4638"
+            }
+        }
+    }
+}
