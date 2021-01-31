@@ -1,0 +1,21 @@
+{
+    "users": {
+        "Fraser Rennie": {
+            "firstName": "FIRST NAME",
+            "lastName": "SECOND NAME",
+            "bod card":"STUDENT ID",
+            "college":"COLLEGE",
+            "email": "EMAIL FOR BOOKINGS",
+            "title": "Mr",
+            "preferences": {
+                "morning": "MORNING PREFERENCE",
+                "afternoon": "AFTERNOON PREFERENCE",
+                "evening": null
+            },
+            "login":{
+                "username":"abcd1234@ox.ac.uk",
+                "password":"YOUR PASSWORD"
+            }
+        }
+    }
+}
