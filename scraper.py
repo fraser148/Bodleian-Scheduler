@@ -6,6 +6,13 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 
+def hasXpath(xpath,driver):
+    try:
+        driver.find_element_by_xpath(xpath)
+        return True
+    except:
+        return False
+
 def highlight(element):
     # Highlights a Selenium webdriver element
     driver = element._parent
@@ -33,12 +40,27 @@ def book(userdata, service):
     signin = driver.find_element_by_id("idSIButton9")
     signin.click()
     #time.sleep(6)
-    calendar = driver.find_element_by_xpath("//span[@aria-label='" + day + "']")
-    calendar.click()
-    time.sleep(2)
-    slot = driver.find_element_by_xpath("//div[contains(h5, 'Lower Reading Room Desk Booking') and contains(p, '13:00')]/parent::*/descendant::a")
-    #highlight(slot)
-    slot.click()
+    okay = False
+    while okay != True:
+        try:
+            calendar = driver.find_element_by_xpath("//span[@aria-label='" + day + "']")
+            calendar.click()
+            okay = True
+        except:
+            print("Calendar loading")
+    okay = False
+    while okay != True:
+        try:
+            slot = driver.find_element_by_xpath("//div[contains(h5, 'Lower Reading Room Desk Booking') and contains(p, '13:00')]/parent::*/descendant::a")
+            #highlight(slot)
+            slot.click()
+            okay = True
+        except:
+            xpather = "//h3[contains(text(), 'Sorry, no spaces found')]"
+            if hasXpath(xpather,driver):
+                print("NO MORE SLOTS")
+            else:
+                print("Slots are loading")
     time.sleep(2)
     confirm = driver.find_element_by_name("ctl00$ContentPlaceHolder$Cart$CheckoutButton")
     confirm.click()
@@ -71,7 +93,7 @@ for user in userdata:
     index += 1
 
 
-NextDay_Date = datetime.datetime.today() + datetime.timedelta(days=1)
+NextDay_Date = datetime.datetime.today() + datetime.timedelta(days=0)
 #day = NextDay_Date.strftime("%B %d, %Y").replace(" 0", " ")
 day = NextDay_Date.strftime("%B %d, %Y")
 
