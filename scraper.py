@@ -6,11 +6,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 
-
-
-email_key = "exet5095@ox.ac.uk"
-pwd = "VernVern01!!"
-
 def highlight(element):
     # Highlights a Selenium webdriver element
     driver = element._parent
@@ -37,7 +32,7 @@ def book(userdata, service):
     time.sleep(1)
     signin = driver.find_element_by_id("idSIButton9")
     signin.click()
-    time.sleep(6)
+    #time.sleep(6)
     calendar = driver.find_element_by_xpath("//span[@aria-label='" + day + "']")
     calendar.click()
     time.sleep(2)
