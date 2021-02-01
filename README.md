@@ -1,4 +1,5 @@
 # Bodleian Scheduler
+|PyPi_Version| |PyPi_Status| |Format| |Supported_versions_of_Python| |Language grade: Python| |License|
 
 The Bodleian Scheduler is a service that returns an ics calendar invite via your Oxford University email when you book a library slot through https://spacefinder.bodleian.ox.ac.uk/
 
