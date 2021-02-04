@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/oxtickets/bookings/
+    - /bin/cp autoresponder.py $DEPLOYPATH
