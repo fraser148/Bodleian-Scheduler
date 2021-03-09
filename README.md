@@ -14,4 +14,3 @@ john.smith@college.ox.ac.uk
 
 If there are any issues please contact
 [fraser@sauramedia.com](mailto:fraser@sauramedia.com)
-Hi Fraser this is Doug
