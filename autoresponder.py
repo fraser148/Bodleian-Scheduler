@@ -9,7 +9,8 @@ import logging
 import email
 import email.header
 import time
-import datetime
+from datetime import datetime
+from datetime import timedelta
 from random import randint
 #from email.message import EmailMessage
 #from ics import Calendar, Event
@@ -54,17 +55,25 @@ def new_email2(start, end, library, account):
     organizer = "ORGANIZER;CN=Bodleian Scheduler:mailto:bodleian.scheduler"+CRLF+" @oxtickets.co.uk"
     fro = "Bodleian Scheduler <bodleian.scheduler@oxtickets.co.uk>"
 
-    ddtstart = datetime.datetime.now()
-    dtoff = datetime.timedelta(days = 1)
-    dur = datetime.timedelta(hours = 1)
-    ddtstart = ddtstart +dtoff
-    dtend = ddtstart + dur
-    dtstamp = datetime.datetime.now().strftime("%Y%m%dT%H%M%SZ")
-    dtstart = ddtstart.strftime("%Y%m%dT%H%M%SZ")
-    starter = start.strftime("%Y%m%dT%H%M%SZ")
-    ender = end.strftime("%Y%m%dT%H%M%SZ")
-    print(dtstart)
-    dtend = dtend.strftime("%Y%m%dT%H%M%SZ")
+    #TEMPORARY BST SHIFT
+
+    start2 = start + timedelta(hours=-1)
+    end2 = end + timedelta(hours=-1)
+
+    print(start2)
+    print(end2)
+
+    #ddtstart = datetime.datetime.now()
+    #dtoff = datetime.timedelta(days = 1)
+    #dur = datetime.timedelta(hours = 1)
+    #ddtstart = ddtstart +dtoff
+    #dtend = ddtstart + dur
+    dtstamp = datetime.now().strftime("%Y%m%dT%H%M%SZ")
+    #dtstart = ddtstart.strftime("%Y%m%dT%H%M%SZ")
+    starter = start2.strftime("%Y%m%dT%H%M%SZ")
+    ender = end2.strftime("%Y%m%dT%H%M%SZ")
+    #print(dtstart)
+    #dtend = dtend.strftime("%Y%m%dT%H%M%SZ")
 
     description = "DESCRIPTION: Bodleian Library Slot"+CRLF
     attendee = ""
@@ -78,7 +87,7 @@ def new_email2(start, end, library, account):
     #ical+= "SUMMARY:test "+ddtstart.strftime("%Y%m%d @ %H:%M")+CRLF+"TRANSP:OPAQUE"+CRLF+"END:VEVENT"+CRLF+"END:VCALENDAR"+CRLF
     ical+= "SUMMARY:"+library+CRLF+"TRANSP:OPAQUE"+CRLF+"END:VEVENT"+CRLF+"END:VCALENDAR"+CRLF
 
-    eml_body = "Your slot is in: " + library + "\n\n" + start.strftime("%d/%m/%Y @ %H:%M")
+    eml_body = "Your slot is in: " + library + "\n\n" + start.strftime("%d/%m/%Y at %H:%M")
     #eml_body_bin = "This is the email body in binary - two steps"
     msg = MIMEMultipart('mixed')
     msg['Reply-To']=fro
@@ -131,7 +140,7 @@ def format_date(date):
     mm = date[14:16]
 
     normal_date = YYYY + "-" + MM + "-" + DD + " " + HH + ":" + mm
-    new_date = datetime.datetime.strptime(normal_date, '%Y-%m-%d %H:%M')
+    new_date = datetime.strptime(normal_date, '%Y-%m-%d %H:%M')
     print(new_date)
     return new_date
 
@@ -179,7 +188,7 @@ def process_mailbox(M, account):
                 # Now convert to local date-time
                 date_tuple = email.utils.parsedate_tz(msg['Date'])
                 if date_tuple:
-                    local_date = datetime.datetime.fromtimestamp(
+                    local_date = datetime.fromtimestamp(
                         email.utils.mktime_tz(date_tuple))
                     print ("Local Date:", \
                         local_date.strftime("%a, %d %b %Y %H:%M:%S"))
@@ -207,7 +216,7 @@ while 1:
         print("something went wrong - Login")
         logging.warning('Something went wrong in the login')
         continue
-
+    
     # go through all unseen and then check whether in list
 
     if counter == 60:
